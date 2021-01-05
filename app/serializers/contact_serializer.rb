@@ -1,9 +1,15 @@
 class ContactSerializer < ActiveModel::Serializer
   attributes :id, :name, :email, :birthdate, :age
 
-  belongs_to :kind
+  belongs_to :kind do
+    link(:kind) { kind_url(object.kind.id)}
+  end
   has_many :phones
   has_one :address
+
+  #HATEOAS
+  link(:self) { contact_url(object.id)}
+  # link(:kind) { kind_url(object.kind.id)}
 
   def age
     Date.today.year - object.birthdate.year
