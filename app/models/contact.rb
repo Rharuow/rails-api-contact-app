@@ -1,7 +1,7 @@
 class Contact < ApplicationRecord
 
   # Associations
-  belongs_to :kind #, optional: true
+  belongs_to :kind, optional: true
   has_many :phones, dependent: :destroy
   has_one :address, dependent: :destroy
   
