@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-  before_action :set_contact, only: [:show, :update, :destroy]
+  before_action :set_contact
 
   # POST /contacts/1/address
   def create
