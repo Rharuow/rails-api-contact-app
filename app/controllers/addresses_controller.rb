@@ -12,7 +12,7 @@ class AddressesController < ApplicationController
     end
   end
 
-  # GET contacts/1/phones
+  # GET contacts/1/address
   def show
     render json: @contact.address
   end
@@ -39,5 +39,4 @@ class AddressesController < ApplicationController
     def address_params
         ActiveModelSerializers::Deserialization.jsonapi_parse(params)
     end
-
 end

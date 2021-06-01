@@ -3,7 +3,7 @@ class PhonesController < ApplicationController
 
   # POST /contacts/1/phone
   def create
-    @contact.phones = Phones.new(phones_params)
+    @contact.phones << Phone.new(phones_params)
 
     if @contact.save
       render json: @contact.phones, status: :created, location: contact_phones_url(@contact)
@@ -17,9 +17,11 @@ class PhonesController < ApplicationController
     render json: @contact.phones
   end
 
-  # PATCH/PUT /kinds/1
+  # PATCH/PUT /contacts/1/phone
   def update
-    if @contact.phones.update(phones_params)
+    phone = Phone.find(phones_params[:id])
+    
+    if phone.update(phones_params)
         render json: @contact.phones
     else
         render json: @contact.errors, status: :unprocessable_entity
@@ -27,7 +29,8 @@ class PhonesController < ApplicationController
   end
 
   def destroy
-    @contact.phones.destroy
+    phone = Phone.find(phones_params[:id])
+    phone.destroy
   end
 
   private
